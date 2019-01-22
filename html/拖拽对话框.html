@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    .container {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      position: relative;
+    }
+    p{
+      font-size: 36px;
+    }
+    #click-here-login {
+      font-size: 30px;
+      cursor: pointer;
+    }
+    .login {
+      position: absolute;
+      width: 400px;
+      height: 250px;
+      box-shadow: 0 0 10px black;
+      left: 50%;
+      margin-top: 100px;
+      margin-left: -200px;
+      padding: 10px;
+      border-radius: 8px;
+      background: white;
+      display: none;
+      z-index: 10;
+    }
+    .login span {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .login-input-content {
+      margin-top: 25px;
+      font-size: 20px;
+    }
+    .login-input-content input {
+      height: 26px;
+      width: 240px;
+      border-radius: 4px;
+      border: 1px solid #CCC;
+      line-height: 26px;
+      /* -webkit-text-fill-color: #ededed !important; */
+      background-color:transparent;
+      background-image: none;
+      transition: background-color 50000s ease-in-out 0s;
+    }
+    .login-pwd {
+      margin: 10px;
+      margin-left: 28px;
+    }
+    .login-btn {
+      margin-top: 20px;
+    }
+    .login-btn input {
+      width: 100px;
+      height: 40px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      background: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .login-bg {
+      width: 100%;
+      height: 100%;
+      background: rgba(204, 204, 204, 0.6);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: none;
+      z-index: 8;
+    }
+    #title {
+      cursor: move;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <p id="click-here-login">点此登录</p>
+    <div class="login" id="loginBox">
+      <p id="title">登录会员</p>
+      <span id="close">X</span>
+      <div class="login-input-content">
+        <div class="login-username">
+          <label for="username">用户名：</label>
+          <input type="text" name="username" id="username" />
+        </div>
+        <div class="login-pwd">
+          <label for="pwd">密码：</label>
+          <input type="text" name="pwd" id="pwd" />
+        </div>
+      </div>
+      <div class="login-btn">
+        <input type="submit" name="submit" id="submit" value="提交" />
+      </div>
+    </div>
+  </div>
+  <div class="login-bg  clearfix" id="loginBg"></div>
+  <script>
+    var clickTitle = document.getElementById('click-here-login');
+    var loginBox = document.getElementById('loginBox');
+    var loginBg = document.getElementById('loginBg');
+    var close = document.getElementById('close');
+    var loginTitle = document.getElementById('title');
+
+    clickTitle.onclick = function () {
+      loginBox.style.display = 'block';
+      loginBg.style.display = 'block';
+    }
+    close.onclick = function () {
+      loginBox.style.display = 'none';
+      loginBg.style.display = 'none';
+    }
+    loginTitle.onmousedown = function (e) {
+      var spaceX = e.clientX - loginBox.offsetLeft;
+      var spaceY = e.clientY - loginBox.offsetTop;
+
+      var elementMarginLeftValue = parseInt(getComputedStyle(loginBox,null)['marginLeft']);
+      var elementMarginTopValue = parseInt(getComputedStyle(loginBox,null)['marginTop']);
+
+      document.onmousemove = function (e) {
+        loginBox.style.left = (e.clientX - spaceX - elementMarginLeftValue) + 'px';
+        loginBox.style.top = (e.clientY - spaceY - elementMarginTopValue) + 'px';
+        // console.log('loginBox.style.left'+loginBox.style.left);
+        // console.log('loginBox.style.left'+loginBox.style.left);
+      };
+    };
+    document.onmouseup = function () {
+      document.onmousemove = null;
+    }
+
+  </script>
+</body>
+
+</html>
