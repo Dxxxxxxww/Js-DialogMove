@@ -1,2 +1,2 @@
-# Js-DialogMove
-拖拽对话框
+# js-mini-program-DialogMove
+js小练习，拖拽对话框
